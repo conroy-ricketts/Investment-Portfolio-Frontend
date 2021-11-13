@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 export default function App() {
   return (
-    <View style = {{paddingTop: 30}}>
+    <View style = {{paddingTop: 30, backgroundColor: 'black'}}>
       <Graph/>
       <Assets/>
     </View>

@@ -4,6 +4,6 @@ import { Text } from 'react-native';
 export default function Assets()
 {
     return (
-        <Text> {"Test Assests"} </Text>
+        <Text style = {{color: 'white'}}> {"Test Assests"} </Text>
     );
 }
