@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Text, StyleSheet, View } from 'react-native';
-import CryptoCard from '../components/CryptoCard';
+import CryptoCard from '../Components/CryptoCard';
 
 
 export default function TopCryto() {
