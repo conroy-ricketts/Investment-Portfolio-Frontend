@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import Graph from '../Components/Graph';
+import Graph from '../components/Graph';
 
 const styles = StyleSheet.create
 ({
