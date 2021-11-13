@@ -13,7 +13,7 @@ const styles = StyleSheet.create
     },
     scrollView:
     {
-        marginVertical: 10,
+        marginVertical: 350,
     },
     mainText:
     {
@@ -31,6 +31,11 @@ const styles = StyleSheet.create
     {
         color: '#F81304',
     },
+    netWorthText:
+    {
+        color: '#00FFF0',
+        fontSize: 32,
+    }
 });
 
 function formatAmount(amount: number): string
@@ -55,9 +60,13 @@ function formatAmount(amount: number): string
 
 export default function Assets()
 {
+    let tempNetWorth = 10000000000.12321134;
 
     return (
         <View>
+            <Text style = {[styles.netWorthText, {position: 'absolute', left: 0, top: 0}]}>{'Investing'}</Text>
+            <Text style = {[styles.netWorthText, {position: 'absolute', left: 0, top: 40}]}>{`$${tempNetWorth.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`}</Text>
+
             <Graph/>
 
             <ScrollView style = {styles.scrollView}>
@@ -69,7 +78,7 @@ export default function Assets()
                         <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, bottom: 11}]}> {`%${Math.abs(asset.percentChange)}`} </Text>
                     </View>
                 ))}
-        </ScrollView>
+            </ScrollView>
         </View>
     );
 }
