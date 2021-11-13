@@ -6,7 +6,7 @@ import { View } from 'react-native';
 
 export default function App() {
   return (
-    <View style = {{paddingTop: 30, backgroundColor: 'black'}}>
+    <View style = {{paddingTop: 30, backgroundColor: 'black', flex: 1}}>
       {/*<TopCrypto/> */}
       <Assets/>
     </View>
