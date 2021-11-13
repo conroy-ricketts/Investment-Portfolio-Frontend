@@ -6,16 +6,30 @@ const styles = StyleSheet.create
 ({
     assetCard:
     {
-        backgroundColor: '#DBDBD9',
-        height: 61,
-        width: 333,
+        height: 65,
         borderRadius: 5,
         borderWidth: 1.5,
         borderColor: 'black',
     },
     scrollView:
     {
-      marginVertical: 10,
+        marginVertical: 10,
+    },
+    mainText:
+    {
+        color: '#00FFF0',
+    },
+    accentText:
+    {
+        color: '#545454',
+    },
+    gainText:
+    {
+        color: '#21DD03',
+    },
+    lossText:
+    {
+        color: '#F81304',
     },
 });
 
@@ -163,12 +177,11 @@ export default function Assets()
         <ScrollView style = {styles.scrollView}>
             {assets.map((asset) => (
                 <View style = {styles.assetCard}>
-                    <Text style = {{position: 'absolute', left: 3, top: 5}}> {asset.name} </Text>
-                    <Text style = {{position: 'absolute', left: 3, bottom: 7}}> {asset.amount} </Text>
-                    <Text style = {{position: 'absolute', right: 0, top: 15}}> {asset.totalValue} </Text>
-                    <Text style = {{position: 'absolute', right: 0, top: 15}}> {asset.dollarChange} </Text>
-                    <Text style = {{position: 'absolute', right: 0, top: 15}}> {asset.percentChange} </Text>
-                    <Text style = {{position: 'absolute', right: 0, top: 15}}> {asset.currentPrice} </Text>
+                    <Text style = {[styles.mainText, {position: 'absolute', left: 0, top: 11}]}> {`${asset.name}  ${asset.amount}`} </Text>
+                    <Text style = {[styles.accentText, {position: 'absolute', left: 0, bottom: 11}]}> {`$${asset.totalValue}`} </Text>
+                    <Text style = {[styles.gainText, {position: 'absolute', right: 50, top: 11}]}> {`$${asset.dollarChange}`} </Text>
+                    <Text style = {[styles.gainText, {position: 'absolute', right: 50, bottom: 11}]}> {`%${asset.percentChange}`} </Text>
+                    <Text style = {[styles.mainText, {position: 'absolute', right: 0, top: 11}]}> {`$${asset.currentPrice}`} </Text>
                 </View>
             ))}
         </ScrollView>
