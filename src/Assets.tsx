@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Graph from './Graph';
 
 const styles = StyleSheet.create
 ({
@@ -34,19 +35,19 @@ const styles = StyleSheet.create
 
 function formatAmount(amount: number): string
 {
-    let retVal: string = `$${amount.toFixed(2)}`;
+    let retVal: string = `$${Math.abs(amount).toFixed(2)}`;
     
     if(amount >= 1000 && amount < 1000000)
     {
-        retVal = `$${(amount/1000)}K`;
+        retVal = `$${(Math.abs(amount)/1000)}K`;
     }
     else if(amount >= 1000000 && amount < 1000000000)
     {
-        retVal = `$${(amount/1000000)}M`;
+        retVal = `$${(Math.abs(amount)/1000000)}M`;
     }
     else if(amount >= 1000000000)
     {
-        retVal = `$${(amount/1000000000)}B`;
+        retVal = `$${(Math.abs(amount)/1000000000)}B`;
     }
 
     return retVal;
@@ -56,16 +57,20 @@ export default function Assets()
 {
 
     return (
-        <ScrollView style = {styles.scrollView}>
-            {testAssets.map((asset, index) => (
-                <View style = {styles.assetCard} key = {index}>
-                    <Text style = {[styles.mainText, {position: 'absolute', left: 0, top: 11}]}> {`${asset.name}  ${asset.amount}  ${formatAmount(asset.currentPrice)}`} </Text>
-                    <Text style = {[styles.accentText, {position: 'absolute', left: 0, bottom: 11}]}> {formatAmount(asset.totalValue)} </Text>
-                    <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, top: 11}]}> {formatAmount(asset.dollarChange)} </Text>
-                    <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, bottom: 11}]}> {`%${asset.percentChange}`} </Text>
-                </View>
-            ))}
+        <View>
+            <Graph/>
+
+            <ScrollView style = {styles.scrollView}>
+                {testAssets.map((asset, index) => (
+                    <View style = {styles.assetCard} key = {index}>
+                        <Text style = {[styles.mainText, {position: 'absolute', left: 0, top: 11}]}> {`${asset.name}  ${asset.amount}  ${formatAmount(asset.currentPrice)}`} </Text>
+                        <Text style = {[styles.accentText, {position: 'absolute', left: 0, bottom: 11}]}> {formatAmount(asset.totalValue)} </Text>
+                        <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, top: 11}]}> {formatAmount(asset.dollarChange)} </Text>
+                        <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, bottom: 11}]}> {`%${Math.abs(asset.percentChange)}`} </Text>
+                    </View>
+                ))}
         </ScrollView>
+        </View>
     );
 }
 
