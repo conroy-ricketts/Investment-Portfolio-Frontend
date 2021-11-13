@@ -22,12 +22,12 @@ const CryptoCard = () => {
 }
 
 const styles = StyleSheet.create({
-    cardWrapper
-    leftWrapper
-    titlesWrapper
-    title
-    subtitle
-    rightWrapper
+    cardWrapper: {},
+    leftWrapper: {},
+    titlesWrapper: {},
+    title: {},
+    subtitle: {},
+    rightWrapper: {},
     text: {
         fontSize: 24,
         fontWeight: 'bold',
