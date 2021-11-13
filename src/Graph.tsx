@@ -1,9 +1,36 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { testTransactionsAsJSON } from '../src/App';
 
-export default function Assets()
+
+export default function Graph()
 {
     return (
-        <Text style = {{color: 'white'}}> {"Test Graph"} </Text>
+        <View>
+        <Text style={styles.text}>{"Investing"}</Text>
+        <TotalAmount />
+
+        </View>
+
     );
 }
+
+function TotalAmount() {
+    var total = 0;
+
+    for(var i = 0; i < testTransactionsAsJSON.length; i++) {
+        total += testTransactionsAsJSON[i].amount;
+    }
+
+    return(
+    <View>
+        <Text style={styles.text}>{total}</Text>
+    </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    text: {
+        color: '#FFFFFF',
+    }
+});
