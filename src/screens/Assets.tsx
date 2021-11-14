@@ -135,15 +135,15 @@ function formatAmount(amount: number): string
     
     if(amount >= 1000 && amount < 1000000)
     {
-        retVal = `$${(Math.abs(amount)/1000)}K`;
+        retVal = `$${(Math.abs(amount)/1000).toFixed(2)}K`;
     }
     else if(amount >= 1000000 && amount < 1000000000)
     {
-        retVal = `$${(Math.abs(amount)/1000000)}M`;
+        retVal = `$${(Math.abs(amount)/1000000).toFixed(2)}M`;
     }
     else if(amount >= 1000000000)
     {
-        retVal = `$${(Math.abs(amount)/1000000000)}B`;
+        retVal = `$${(Math.abs(amount)/1000000000).toFixed(2)}B`;
     }
 
     return retVal;
@@ -375,7 +375,7 @@ export const testAssets: Asset[] = [
         totalValue: 100000,
         dollarChange: 500,
         percentChange: 5,
-        currentPrice: 60000,
+        currentPrice: 63400.89,
     },
     {
         name: 'ETH',
