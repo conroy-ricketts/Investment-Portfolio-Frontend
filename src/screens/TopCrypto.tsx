@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, View, FlatList, SafeAreaView} from 'react-native';
 import CryptoCard from '../components/CryptoCard';
-
+import { SAMPLE_DATA } from '../../sampleData';
 const ListHeader = () => (
     <>
         <View style={styles.titleWrapper}>
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: 'white',
+        color: '#00FFF0',
     }
 });
