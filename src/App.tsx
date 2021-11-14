@@ -1,7 +1,5 @@
 import React from 'react';
-import Graph from './components/Graph';
 import Assets from './screens/Assets';
-import TopCrypto from './screens/TopCrypto';
 import { View } from 'react-native';
 
 export default function App() {
