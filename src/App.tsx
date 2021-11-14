@@ -13,7 +13,7 @@ export default function App() {
   );
 }
 
-interface Transaction
+export interface Transaction
 {
   type: 'crypto' | 'stock',
   orderType: 'buy' | 'sell' | 'transfer',
