@@ -10,7 +10,7 @@ const styles = StyleSheet.create
     },
     scrollView:
     {
-        marginVertical: 20,
+        height: 330,
     },
     mainText:
     {
@@ -66,11 +66,22 @@ const styles = StyleSheet.create
         justifyContent: 'center',
         borderRadius: 10,
     },
-    viewToggleText:
+    buttonText:
     {
         color: '#00FFF0',
         fontSize: 14,
     },
+    addTransactionButton:
+    {
+        width: 300,
+        height: 35,
+        right: 0,
+        borderWidth: 2,
+        borderColor: '#00FFF0',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+    }
 });
 
 function formatAmount(amount: number): string
@@ -113,27 +124,35 @@ export default function Assets()
             <View style = {styles.assetsHeader}>
                 <Text style = {[styles.assetsHeaderText, {position: 'absolute', left: 0, top: 0}]}>{'Assets'}</Text>
                 <TouchableOpacity style = {styles.viewToggle} onPress = {() => setSelectedView((selectedView + 1) % 3)}>
-                    <Text style = {styles.viewToggleText}>{viewTitles[selectedView]}</Text>
+                    <Text style = {styles.buttonText}>{viewTitles[selectedView]}</Text>
                 </TouchableOpacity>
             </View>
 
-            <ScrollView style = {styles.scrollView}>
-                {testAssets.map((asset, index) => (
+            <View style = {styles.scrollView}>
+                <ScrollView>
+                    {testAssets.map((asset, index) => (
 
-                    (selectedView == 0 &&  asset.type == 'crypto') ||
-                    (selectedView == 1 &&  asset.type == 'stock') ||
-                    (selectedView == 2) ?
-                    (
-                        <View style = {styles.assetCard} key = {index}>
-                            <Text style = {[styles.mainText, {position: 'absolute', left: 0, top: 11}]}> {`${asset.name}  ${asset.amount}  ${formatAmount(asset.currentPrice)}`} </Text>
-                            <Text style = {[styles.accentText, {position: 'absolute', left: 0, bottom: 11}]}> {formatAmount(asset.totalValue)} </Text>
-                            <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, top: 11}]}> {formatAmount(asset.dollarChange)} </Text>
-                            <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, bottom: 11}]}> {`%${Math.abs(asset.percentChange)}`} </Text>
-                        </View>
-                    )
-                    : null
-                ))}
-            </ScrollView>
+                        (selectedView == 0 &&  asset.type == 'crypto') ||
+                        (selectedView == 1 &&  asset.type == 'stock') ||
+                        (selectedView == 2) ?
+                        (
+                            <View style = {styles.assetCard} key = {index}>
+                                <Text style = {[styles.mainText, {position: 'absolute', left: 0, top: 11}]}> {`${asset.name}  ${asset.amount}  ${formatAmount(asset.currentPrice)}`} </Text>
+                                <Text style = {[styles.accentText, {position: 'absolute', left: 0, bottom: 11}]}> {formatAmount(asset.totalValue)} </Text>
+                                <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, top: 11}]}> {formatAmount(asset.dollarChange)} </Text>
+                                <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, bottom: 11}]}> {`%${Math.abs(asset.percentChange)}`} </Text>
+                            </View>
+                        )
+                        : null
+                    ))}
+                </ScrollView>
+            </View>
+            
+            <View style = {{alignItems: 'center'}}>
+                <TouchableOpacity style = {styles.addTransactionButton} onPress = {() => setSelectedView((selectedView + 1) % 3)}>
+                    <Text style = {styles.buttonText}>{'Add Transaction'}</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -251,7 +270,7 @@ export const testAssets: Asset[] = [
         currentPrice: 2000,
     },
     {
-        name: 'MSFT',
+        name: 'AAPL',
         type: 'stock',
         amount: 100,
         totalValue: 1000000,
