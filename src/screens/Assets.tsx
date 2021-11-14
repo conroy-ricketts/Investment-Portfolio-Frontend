@@ -167,7 +167,7 @@ export default function Assets()
     };
 
     return (
-        <View>
+        <View style = {{paddingTop: 30, backgroundColor: 'black'}}>
             <View style = {styles.screenHeaderCointainer}>
                 <Text style = {[styles.netWorthText, {position: 'absolute', left: 0, top: 0}]}>{'Investing'}</Text>
                 <Text style = {[styles.netWorthText, {position: 'absolute', left: 0, top: 40}]}>{`$${tempNetWorth.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`}</Text>
@@ -346,6 +346,8 @@ export default function Assets()
 
                 </View>
             </Modal>
+
+            <View style = {{padding: 100}}/>   
         </View>
     );
 }

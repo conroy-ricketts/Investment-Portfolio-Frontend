@@ -2,13 +2,10 @@ import React from 'react';
 import Assets from './screens/Assets';
 import { View } from 'react-native';
 import TopCrypto from './screens/TopCrypto';
+import TopStocks from './screens/TopStocks';
 export default function App() {
   return (
-    // <TopCrypto/>
-
-    <View style = {{paddingTop: 30, backgroundColor: 'black'}}>
-      <Assets/>  
-    </View>
+    <Assets/>
   );
 }
 
