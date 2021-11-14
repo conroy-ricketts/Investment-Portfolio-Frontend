@@ -4,10 +4,9 @@ import { View } from 'react-native';
 
 export default function App() {
   return (
-
-    <View style = {{paddingTop: 30, backgroundColor: 'black'}}>
-      {/* <TopCrypto/> */}
-      <Assets/> 
+    <View style = {{paddingTop: 30, backgroundColor: 'black', flex: 1}}>
+      {/*<TopCrypto/> */}
+      <Assets/>
     </View>
   );
 }
