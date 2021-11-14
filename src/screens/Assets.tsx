@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, ScrollView, StyleSheet, Modal, Text, View, TextInput } from 'react-native';
+import { Transaction } from '../App';
 import Graph from '../components/Graph';
 
 const styles = StyleSheet.create
@@ -98,8 +99,8 @@ const styles = StyleSheet.create
         width: 150,
         height: 35,
         borderWidth: 2,
-        bottom: 15,
-        left: 15,
+        bottom: 20,
+        left: 20,
         borderColor: '#00FFF0',
         alignItems: 'center',
         justifyContent: 'center',
@@ -111,8 +112,8 @@ const styles = StyleSheet.create
         width: 150,
         height: 35,
         borderWidth: 2,
-        bottom: 15,
-        right: 15,
+        bottom: 20,
+        right: 20,
         borderColor: '#00FFF0',
         alignItems: 'center',
         justifyContent: 'center',
@@ -154,6 +155,16 @@ export default function Assets()
     const [selectedView, setSelectedView] = useState(2);
     const [modalVisible, setModalVisible] = useState(false);
     const viewTitles: Array<string> = ['Crypto', 'Stocks', 'Both'];
+    let tempTransaction: Transaction = {
+        type: 'crypto',
+        orderType: 'buy',
+        assetName: 'BTC',
+        amount: 2.3,
+        dateTime: '01-26-2019-13-00',
+        price: 40000,
+        feeType: 'USD',
+        fee: 0.10,
+    };
 
     return (
         <View>
@@ -209,90 +220,115 @@ export default function Assets()
 
                     <View style = {{padding: 10}}/>
 
-                    <Text style = {[styles.mainText, {left: -70}]}>{"Type (\"crypto\" or \"stock\")"}</Text>
+                    <Text style = {styles.mainText}>{"Type (\"crypto\" or \"stock\")"}</Text>
 
                     <View style = {{padding: 2}}/>
 
                     <TextInput 
                         style = {styles.textInputBox}
-                        onChangeText = {() => {}}
+                        onEndEditing = {(value) => {
+                            let temp: any = 'crypto';
+                            if(value.nativeEvent.text = 'stock')
+                            {
+                                temp = 'stock';
+                            }
+                            tempTransaction.type = temp;
+                        }}
                     />
 
                     <View style = {{padding: 10}}/>
 
-                    <Text style = {[styles.mainText, {left: -70}]}>{"Order Type"}</Text>
+                    <Text style = {styles.mainText}>{"Order Type (\"buy\", \"sell\", or \"transfer\")"}</Text>
 
                     <View style = {{padding: 2}}/>
 
                     <TextInput 
                         style = {styles.textInputBox}
-                        onChangeText = {() => {}}
+                        onEndEditing = {(value) => {
+                            let temp: any = 'buy';
+                            if(value.nativeEvent.text = 'sell')
+                            {
+                                temp = 'sell';
+                            }
+                            else if(value.nativeEvent.text = 'transfer')
+                            {
+                                temp = 'transfer';
+                            }
+                            tempTransaction.type = temp;
+                        }}
                     />
 
                     <View style = {{padding: 10}}/>
 
-                    <Text style = {[styles.mainText, {left: -70}]}>{"Asset Name"}</Text>
+                    <Text style = {styles.mainText}>{"Asset Name (please be consistent)"}</Text>
 
                     <View style = {{padding: 2}}/>
 
                     <TextInput 
                         style = {styles.textInputBox}
-                        onChangeText = {() => {}}
+                        onEndEditing = {(value) => {tempTransaction.assetName = value.nativeEvent.text}}
                     />
 
                     <View style = {{padding: 10}}/>
 
-                    <Text style = {[styles.mainText, {left: -70}]}>{"Amount"}</Text>
+                    <Text style = {styles.mainText}>{"Amount"}</Text>
 
                     <View style = {{padding: 2}}/>
 
                     <TextInput 
                         style = {styles.textInputBox}
-                        onChangeText = {() => {}}
+                        onEndEditing = {(value) => {tempTransaction.amount = +value.nativeEvent.text}}
                     />
 
                     <View style = {{padding: 10}}/>
 
-                    <Text style = {[styles.mainText, {left: -70}]}>{"Date and Time"}</Text>
+                    <Text style = {styles.mainText}>{"Date and Time (MM-DD-YYYY-HH-MM)"}</Text>
 
                     <View style = {{padding: 2}}/>
 
                     <TextInput 
                         style = {styles.textInputBox}
-                        onChangeText = {() => {}}
+                        onEndEditing = {(value) => {tempTransaction.dateTime = value.nativeEvent.text}}
                     />
 
                     <View style = {{padding: 10}}/>
 
-                    <Text style = {[styles.mainText, {left: -70}]}>{"Price"}</Text>
+                    <Text style = {styles.mainText}>{"Price"}</Text>
 
                     <View style = {{padding: 2}}/>
 
                     <TextInput 
                         style = {styles.textInputBox}
-                        onChangeText = {() => {}}
+                        onEndEditing = {(value) => {tempTransaction.price = +value.nativeEvent.text}}
                     />
 
                     <View style = {{padding: 10}}/>
 
-                    <Text style = {[styles.mainText, {left: -70}]}>{"Fee Type"}</Text>
+                    <Text style = {styles.mainText}>{"Fee Type (\"USD\" or \"Native Asset\")"}</Text>
 
                     <View style = {{padding: 2}}/>
 
                     <TextInput 
                         style = {styles.textInputBox}
-                        onChangeText = {() => {}}
+                        onEndEditing = {(value) => {
+                            let temp: any = 'USD';
+                            if(value.nativeEvent.text = 'Native Asset')
+                            {
+                                temp = 'Native Asset';
+                            }
+                            tempTransaction.type = temp;
+                        }}
                     />
 
                     <View style = {{padding: 10}}/>
 
-                    <Text style = {[styles.mainText, {left: -70}]}>{"Fee"}</Text>
+                    <Text style = {styles.mainText}>{"Fee"}</Text>
 
                     <View style = {{padding: 2}}/>
 
                     <TextInput 
                         style = {styles.textInputBox}
-                        onChangeText = {() => {}}
+                        onEndEditing = {(value) => {tempTransaction.fee = +value.nativeEvent.text}}
                     />
 
                     <View style = {{padding: 10}}/>                    
@@ -303,6 +339,7 @@ export default function Assets()
 
                     <TouchableOpacity style = {styles.finalAddTransactionModalButton} onPress = {() => {
                         setModalVisible(!modalVisible);
+                        console.log(tempTransaction);
                     }}>
                         <Text style = {styles.buttonText}>{'Add Transaction'}</Text>
                     </TouchableOpacity>
