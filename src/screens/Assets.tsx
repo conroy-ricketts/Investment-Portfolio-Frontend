@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Graph from '../components/Graph';
 
 const styles = StyleSheet.create
@@ -56,10 +56,20 @@ const styles = StyleSheet.create
     },
     viewToggle:
     {
-        width: 160,
+        width: 100,
         height: 35,
         position: 'absolute',
         right: 0,
+        borderWidth: 2,
+        borderColor: '#00FFF0',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+    },
+    viewToggleText:
+    {
+        color: '#00FFF0',
+        fontSize: 14,
     },
 });
 
@@ -87,6 +97,7 @@ export default function Assets()
 {
     let tempNetWorth = 10000000000.12321134;
     const [selectedView, setSelectedView] = useState(2);
+    const viewTitles: Array<string> = ['Crypto', 'Stocks', 'Both'];
 
     return (
         <View>
@@ -101,13 +112,9 @@ export default function Assets()
 
             <View style = {styles.assetsHeader}>
                 <Text style = {[styles.assetsHeaderText, {position: 'absolute', left: 0, top: 0}]}>{'Assets'}</Text>
-                <View style = {styles.viewToggle}>
-                    <Button 
-                        onPress = {() => setSelectedView((selectedView + 1) % 3)}
-                        title = 'Toggle View'
-                        color = 'gray'
-                    />
-                </View>
+                <TouchableOpacity style = {styles.viewToggle} onPress = {() => setSelectedView((selectedView + 1) % 3)}>
+                    <Text style = {styles.viewToggleText}>{viewTitles[selectedView]}</Text>
+                </TouchableOpacity>
             </View>
 
             <ScrollView style = {styles.scrollView}>
