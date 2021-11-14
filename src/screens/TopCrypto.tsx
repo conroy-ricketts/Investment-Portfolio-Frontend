@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, View, FlatList, SafeAreaView} from 'react-native';
 import CryptoCard from '../components/CryptoCard';
-import { SAMPLE_DATA } from '../../sampleData';
+import { SAMPLE_DATA } from '../components/sampleData';
 const ListHeader = () => (
     <>
         <View style={styles.titleWrapper}>

@@ -4,11 +4,11 @@ import { View } from 'react-native';
 import TopCrypto from './screens/TopCrypto';
 export default function App() {
   return (
-    <TopCrypto/>
+    // <TopCrypto/>
 
-    // <View style = {{paddingTop: 30, backgroundColor: 'black'}}>
-      /* <Assets/>  */
-    // </View>
+    <View style = {{paddingTop: 30, backgroundColor: 'black'}}>
+      <Assets/>  
+    </View>
   );
 }
 
