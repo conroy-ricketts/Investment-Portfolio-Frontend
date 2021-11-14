@@ -1,4 +1,4 @@
-#Investment Portfolio App
+# Investment Portfolio App
 A cross-platform mobile app that allows you to track both your cryptocurrency and stocks in one place. This project was a submission from the Knight Hacks 2021 Hackathon!
 
 ## Inspiration
