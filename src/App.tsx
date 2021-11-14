@@ -5,7 +5,8 @@ import TopCrypto from './screens/TopCrypto';
 import TopStocks from './screens/TopStocks';
 export default function App() {
   return (
-    <Assets/>
+    <TopCrypto/>
+    // <Assets/>
   );
 }
 
