@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, ScrollView, StyleSheet, Modal, Text, View, TextInput } from 'react-native';
 import Graph from '../components/Graph';
 
 const styles = StyleSheet.create
@@ -81,6 +81,50 @@ const styles = StyleSheet.create
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
+    },
+    addTransactionModal:
+    {
+        flex: 1,
+        borderWidth: 2,
+        borderColor: '#00FFF0',
+        margin: 10,
+        backgroundColor: "black",
+        borderRadius: 20,
+        alignItems: 'center',
+    },
+    closeAddTransactionModalButton:
+    {
+        position: 'absolute',
+        width: 150,
+        height: 35,
+        borderWidth: 2,
+        bottom: 15,
+        left: 15,
+        borderColor: '#00FFF0',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+    },
+    finalAddTransactionModalButton:
+    {
+        position: 'absolute',
+        width: 150,
+        height: 35,
+        borderWidth: 2,
+        bottom: 15,
+        right: 15,
+        borderColor: '#00FFF0',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+    },
+    textInputBox:
+    {
+        color: '#00FFF0',
+        borderColor: '#00FFF0',
+        borderWidth: 2,
+        width: 300,
+        paddingHorizontal: 10,
     }
 });
 
@@ -108,6 +152,7 @@ export default function Assets()
 {
     let tempNetWorth = 10000000000.12321134;
     const [selectedView, setSelectedView] = useState(2);
+    const [modalVisible, setModalVisible] = useState(false);
     const viewTitles: Array<string> = ['Crypto', 'Stocks', 'Both'];
 
     return (
@@ -149,10 +194,121 @@ export default function Assets()
             </View>
             
             <View style = {{alignItems: 'center'}}>
-                <TouchableOpacity style = {styles.addTransactionButton} onPress = {() => setSelectedView((selectedView + 1) % 3)}>
+                <TouchableOpacity style = {styles.addTransactionButton} onPress = {() => setModalVisible(!modalVisible)}>
                     <Text style = {styles.buttonText}>{'Add Transaction'}</Text>
                 </TouchableOpacity>
             </View>
+            
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(!modalVisible)}
+            >
+                <View style={styles.addTransactionModal}>
+
+                    <View style = {{padding: 10}}/>
+
+                    <Text style = {[styles.mainText, {left: -70}]}>{"Type (\"crypto\" or \"stock\")"}</Text>
+
+                    <View style = {{padding: 2}}/>
+
+                    <TextInput 
+                        style = {styles.textInputBox}
+                        onChangeText = {() => {}}
+                    />
+
+                    <View style = {{padding: 10}}/>
+
+                    <Text style = {[styles.mainText, {left: -70}]}>{"Order Type"}</Text>
+
+                    <View style = {{padding: 2}}/>
+
+                    <TextInput 
+                        style = {styles.textInputBox}
+                        onChangeText = {() => {}}
+                    />
+
+                    <View style = {{padding: 10}}/>
+
+                    <Text style = {[styles.mainText, {left: -70}]}>{"Asset Name"}</Text>
+
+                    <View style = {{padding: 2}}/>
+
+                    <TextInput 
+                        style = {styles.textInputBox}
+                        onChangeText = {() => {}}
+                    />
+
+                    <View style = {{padding: 10}}/>
+
+                    <Text style = {[styles.mainText, {left: -70}]}>{"Amount"}</Text>
+
+                    <View style = {{padding: 2}}/>
+
+                    <TextInput 
+                        style = {styles.textInputBox}
+                        onChangeText = {() => {}}
+                    />
+
+                    <View style = {{padding: 10}}/>
+
+                    <Text style = {[styles.mainText, {left: -70}]}>{"Date and Time"}</Text>
+
+                    <View style = {{padding: 2}}/>
+
+                    <TextInput 
+                        style = {styles.textInputBox}
+                        onChangeText = {() => {}}
+                    />
+
+                    <View style = {{padding: 10}}/>
+
+                    <Text style = {[styles.mainText, {left: -70}]}>{"Price"}</Text>
+
+                    <View style = {{padding: 2}}/>
+
+                    <TextInput 
+                        style = {styles.textInputBox}
+                        onChangeText = {() => {}}
+                    />
+
+                    <View style = {{padding: 10}}/>
+
+                    <Text style = {[styles.mainText, {left: -70}]}>{"Fee Type"}</Text>
+
+                    <View style = {{padding: 2}}/>
+
+                    <TextInput 
+                        style = {styles.textInputBox}
+                        onChangeText = {() => {}}
+                    />
+
+                    <View style = {{padding: 10}}/>
+
+                    <Text style = {[styles.mainText, {left: -70}]}>{"Fee"}</Text>
+
+                    <View style = {{padding: 2}}/>
+
+                    <TextInput 
+                        style = {styles.textInputBox}
+                        onChangeText = {() => {}}
+                    />
+
+                    <View style = {{padding: 10}}/>                    
+
+                    <TouchableOpacity style = {styles.closeAddTransactionModalButton} onPress = {() => setModalVisible(!modalVisible)}>
+                        <Text style = {styles.buttonText}>{'Close'}</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style = {styles.finalAddTransactionModalButton} onPress = {() => {
+                        setModalVisible(!modalVisible);
+                    }}>
+                        <Text style = {styles.buttonText}>{'Add Transaction'}</Text>
+                    </TouchableOpacity>
+
+                </View>
+            </Modal>
         </View>
     );
 }
