@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        color: 'white',
+        color: '#00FFF0',
     },
     subtitle: {
         fontSize: 14,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: 'white',
+        color: '#00FFF0',
         padding: 12
     }
 });
