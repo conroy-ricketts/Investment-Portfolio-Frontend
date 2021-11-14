@@ -152,6 +152,8 @@ function formatAmount(amount: number): string
 export default function Assets()
 {
     let tempNetWorth = 10000000000.12321134;
+    let tempNetWorthDollarChange = 800000;
+    let tempNetWorthPercentChange = 80;
     const [selectedView, setSelectedView] = useState(2);
     const [modalVisible, setModalVisible] = useState(false);
     const viewTitles: Array<string> = ['Crypto', 'Stocks', 'Both'];
@@ -171,6 +173,7 @@ export default function Assets()
             <View style = {styles.screenHeaderCointainer}>
                 <Text style = {[styles.netWorthText, {position: 'absolute', left: 0, top: 0}]}>{'Investing'}</Text>
                 <Text style = {[styles.netWorthText, {position: 'absolute', left: 0, top: 40}]}>{`$${tempNetWorth.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`}</Text>
+                <Text style = {[tempNetWorthDollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', left: 0, top: 85}]}>{`${formatAmount(tempNetWorthDollarChange)} (${tempNetWorthPercentChange}%)`}</Text>
             </View>
 
             <View style = {styles.graphContainer}>
