@@ -1,19 +1,17 @@
 import React, { FC } from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet} from "react-native";
 
 interface Props {
     name: string,
     symbol: string,
     currentPrice: number,
     priceChangePercentage7d: number,
-    logoUrl: string
 }
-const CryptoCard: FC<Props> = ({name, symbol, currentPrice, priceChangePercentage7d, logoUrl}) => {
+const StockCard: FC<Props> = ({name, symbol, currentPrice, priceChangePercentage7d}) => {
     const priceChangeColor = priceChangePercentage7d > 0 ? 'green' : 'red';
     return(
         <View style={styles.cardWrapper}>
             <View style={styles.leftWrapper}>
-                <Image source={{uri: logoUrl}} style={styles.image}/>
                 <View style={styles.titlesWrapper}>
                     <Text style={styles.title}>{name}</Text>
                     <Text style={styles.subtitle}>{symbol.toUpperCase()}</Text>
@@ -41,10 +39,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: 'center'
     },
-    image: {
-        height: 48,
-        width: 48,
-    },
     titlesWrapper: {
         marginLeft: 8,
     },
@@ -66,4 +60,4 @@ const styles = StyleSheet.create({
         padding: 12
     }
 });
-export default CryptoCard;
+export default StockCard;
