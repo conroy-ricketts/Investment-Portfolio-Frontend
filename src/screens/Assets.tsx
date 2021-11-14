@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Graph from '../components/Graph';
 
 const styles = StyleSheet.create
@@ -47,12 +47,19 @@ const styles = StyleSheet.create
     },
     assetsHeader:
     {
-        height: 20,
+        height: 35,
     },
     assetsHeaderText:
     {
         color: '#00FFF0',
         fontSize: 20,
+    },
+    viewToggle:
+    {
+        width: 160,
+        height: 35,
+        position: 'absolute',
+        right: 0,
     },
 });
 
@@ -79,6 +86,7 @@ function formatAmount(amount: number): string
 export default function Assets()
 {
     let tempNetWorth = 10000000000.12321134;
+    const [selectedView, setSelectedView] = useState(2);
 
     return (
         <View>
@@ -93,16 +101,30 @@ export default function Assets()
 
             <View style = {styles.assetsHeader}>
                 <Text style = {[styles.assetsHeaderText, {position: 'absolute', left: 0, top: 0}]}>{'Assets'}</Text>
+                <View style = {styles.viewToggle}>
+                    <Button 
+                        onPress = {() => setSelectedView((selectedView + 1) % 3)}
+                        title = 'Toggle View'
+                        color = 'gray'
+                    />
+                </View>
             </View>
 
             <ScrollView style = {styles.scrollView}>
                 {testAssets.map((asset, index) => (
-                    <View style = {styles.assetCard} key = {index}>
-                        <Text style = {[styles.mainText, {position: 'absolute', left: 0, top: 11}]}> {`${asset.name}  ${asset.amount}  ${formatAmount(asset.currentPrice)}`} </Text>
-                        <Text style = {[styles.accentText, {position: 'absolute', left: 0, bottom: 11}]}> {formatAmount(asset.totalValue)} </Text>
-                        <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, top: 11}]}> {formatAmount(asset.dollarChange)} </Text>
-                        <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, bottom: 11}]}> {`%${Math.abs(asset.percentChange)}`} </Text>
-                    </View>
+
+                    (selectedView == 0 &&  asset.type == 'crypto') ||
+                    (selectedView == 1 &&  asset.type == 'stock') ||
+                    (selectedView == 2) ?
+                    (
+                        <View style = {styles.assetCard} key = {index}>
+                            <Text style = {[styles.mainText, {position: 'absolute', left: 0, top: 11}]}> {`${asset.name}  ${asset.amount}  ${formatAmount(asset.currentPrice)}`} </Text>
+                            <Text style = {[styles.accentText, {position: 'absolute', left: 0, bottom: 11}]}> {formatAmount(asset.totalValue)} </Text>
+                            <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, top: 11}]}> {formatAmount(asset.dollarChange)} </Text>
+                            <Text style = {[asset.dollarChange >= 0 ? styles.gainText : styles.lossText, {position: 'absolute', right: 0, bottom: 11}]}> {`%${Math.abs(asset.percentChange)}`} </Text>
+                        </View>
+                    )
+                    : null
                 ))}
             </ScrollView>
         </View>
@@ -112,6 +134,7 @@ export default function Assets()
 interface Asset
 {
     name: string,
+    type: 'crypto' | 'stock',
     amount: number,
     totalValue: number,
     dollarChange: number,
@@ -123,6 +146,7 @@ interface Asset
 export const testAssets: Asset[] = [
     {
         name: 'BTC',
+        type: 'crypto',
         amount: 2.5,
         totalValue: 100000,
         dollarChange: 500,
@@ -131,6 +155,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'ETH',
+        type: 'crypto',
         amount: 5,
         totalValue: 25000,
         dollarChange: -500,
@@ -139,6 +164,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'MSFT',
+        type: 'stock',
         amount: 100,
         totalValue: 1000000,
         dollarChange: 5000,
@@ -147,6 +173,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'BTC',
+        type: 'crypto',
         amount: 2.5,
         totalValue: 100000,
         dollarChange: 500,
@@ -155,6 +182,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'ETH',
+        type: 'crypto',
         amount: 5,
         totalValue: 25000,
         dollarChange: -500,
@@ -163,6 +191,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'MSFT',
+        type: 'stock',
         amount: 100,
         totalValue: 1000000,
         dollarChange: 5000,
@@ -171,6 +200,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'BTC',
+        type: 'crypto',
         amount: 2.5,
         totalValue: 100000,
         dollarChange: 500,
@@ -179,6 +209,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'ETH',
+        type: 'crypto',
         amount: 5,
         totalValue: 25000,
         dollarChange: -500,
@@ -187,6 +218,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'MSFT',
+        type: 'stock',
         amount: 100,
         totalValue: 1000000,
         dollarChange: 5000,
@@ -195,6 +227,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'BTC',
+        type: 'crypto',
         amount: 2.5,
         totalValue: 100000,
         dollarChange: 500,
@@ -203,6 +236,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'ETH',
+        type: 'crypto',
         amount: 5,
         totalValue: 25000,
         dollarChange: -500,
@@ -211,6 +245,7 @@ export const testAssets: Asset[] = [
     },
     {
         name: 'MSFT',
+        type: 'stock',
         amount: 100,
         totalValue: 1000000,
         dollarChange: 5000,
